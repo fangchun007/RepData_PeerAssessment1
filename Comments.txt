@@ -1,0 +1,31 @@
+# I met following problems:
+
+1. When I try to use knit2html() to produce a PA1.md file in the console, the following message comes cout:
+> knit2html("PA1.Rmd")
+Error: It seems you should call rmarkdown::render() instead of knitr::knit2html() 
+because PA1_template.Rmd appears to be an R Markdown v2 document.
+
+Here is a solution, which I obtained from website.
+First, change the settings of PA1.Rmd file to 
+output: 
+    html_document:
+        keep_md: true
+Second, use knit("PA1.Rmd") instead of knit2html to produce the .md file.
+
+2. After uploading the PA1.md file to Github repository, I cannot see my pictures!!
+I checked the source file of PA1.md by clicking the edit button and find the following code
+![](PA1_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
+Namely, I need to upload the whole folder PA1_files to the repository. That's it.
+
+# Some good solutions I found. At least for me they are excellenct:
+
+1. What is the average daily activity pattern?
+library(ggplot2)
+qplot(interval, steps, data=df)+geom_point(color='black')+geom_smooth(aes(color='loess'), 
+    se=TRUE)+stat_summary(fun.y=mean, geom='line', aes(color='mean'))+
+    scale_color_manual(name='Summaries',values=c("dodgerblue","red"))+
+    theme_bw()
+Source: https://github.com/InfH/RepData_PeerAssessment1/blob/master/PA1_template.md
+
+
+
